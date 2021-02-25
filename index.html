@@ -7,7 +7,14 @@
     <body>
         <div class="clock-animation-container"></div>
         <div class="analogue-clock-container"></div>
-        <section class="timer-input"></section>
+        <section class="timer-input">
+            <h2>I'm gonna spend my minutes...</h2>
+            <label for="worktime">working</label>
+            <input type="text" class="input-worktime" name="worktime" maxlength="2" size="1" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+            <label for="breaktime">relaxing</label>
+            <input type="text" class="input-breaktime" name="breaktime" maxlength="2" size="1" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+            <button>drop it like it's hot</button>
+        </section>
     </body>
     <script src="myscripts.js"></script> 
 </html> 

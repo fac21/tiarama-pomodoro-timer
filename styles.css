@@ -1,0 +1,30 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    height: 100vh;
+    background-color: #F1FAEE;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.clock-animation-container {
+    height: 100px;
+    width: 100px;
+    background-color: blue;
+}
+
+.analogue-clock-container {
+    height: 100px;
+    width: 100px;
+    background-color: pink;
+}
+
+.timer-input {
+    height: 100px;
+    width: 100px;
+    background-color: green;
+}

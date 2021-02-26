@@ -9,6 +9,7 @@ const timerResetButton = document.getElementById("timer-reset-button")
 
 const timeRemainingText = document.getElementById("time-remaining")
 
+const progressStationArr = document.querySelectorAll(".bar")
 const progressAniOne = document.getElementById("progress-one")
 const progressAniTwo = document.getElementById("progress-two")
 
@@ -77,6 +78,14 @@ timerResetButton.addEventListener("click", function() {
 
 setInterval(function() {
     if (!isPaused) {
+        if (currentWorkSecs == workMins*60) {
+            progressStationArr[0].style.background = "#ffe5d9"
+            progressStationArr[1].style.background = "#ffe5d9"
+            progressAniTwo.style.background = "#264653"
+            progressAniOne.style.background = "#264653"
+            progressAniOne.style.transform = `rotate(0deg)`
+            progressAniTwo.style.transform = `rotate(-180deg)`
+        }
         if (currentWorkSecs >= 0) {
             let rotatePercentWork = Math.floor(360 - ((currentWorkSecs/(workMins*30)) * 180))
             progressAniOne.style.transform = `rotate(${Math.min(rotatePercentWork, 180)}deg)`
@@ -84,7 +93,19 @@ setInterval(function() {
             timeRemainingText.innerHTML = `${currentWorkAnalogueMins()}:${currentWorkAnalogueSecs()}`
             currentWorkSecs--
         } else {
+            if (currentBreakSecs == breakMins*60) {
+                progressStationArr[0].style.background = "#264653"
+                progressStationArr[1].style.background = "#264653"
+                progressAniTwo.style.background = "#ffe5d9"
+                progressAniOne.style.background = "#ffe5d9"
+                progressAniOne.style.transform = `rotate(0deg)`
+                progressAniTwo.style.transform = `rotate(-180deg)`
+            }
             if (currentBreakSecs >= 0) {
+                let rotatePercentBreak = Math.floor(360 - ((currentBreakSecs/(breakMins*30)) * 180))
+                progressAniOne.style.transform = `rotate(${Math.min(rotatePercentBreak, 180)}deg)`
+                progressAniTwo.style.transform = `rotate(${Math.max(rotatePercentBreak-180, 0)}deg)`
+                timeRemainingText.innerHTML = `${currentBreakAnalogueMins()}:${currentBreakAnalogueSecs()}`
                 currentBreakSecs--
             } else {
                 currentWorkSecs = workMins*60

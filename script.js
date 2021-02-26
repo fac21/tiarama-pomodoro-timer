@@ -64,7 +64,7 @@ setInterval(function() {
             timeRemainingText.innerHTML = `${currentWorkAnalogueMins()}:${currentWorkAnalogueSecs()}`
             // console.log(currentWorkSecs)
         } else {
-            if (currentBreakSecs > 0) {
+            if (currentBreakSecs >= 0) {
                 currentBreakSecs--
                 console.log(currentBreakSecs)
             } else {

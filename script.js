@@ -17,14 +17,28 @@ let breakMins = 0
 let currentWorkSecs = 0
 let currentBreakSecs = 0
 let currentWorkAnalogueSecs = () => {
-    let secs = currentWorkSecs%60
+    let secs = Math.max(currentWorkSecs%60, 0)
     if (secs < 10) {
         return `0` + `${secs}`
     }
     return `${secs}`
 }
 let currentWorkAnalogueMins = () => {
-    let mins = Math.floor(currentWorkSecs/60)
+    let mins = Math.max(Math.floor(currentWorkSecs/60), 0)
+    if (mins < 10) {
+        return `0` + `${mins}`
+    }
+    return `${mins}`
+}
+let currentBreakAnalogueSecs = () => {
+    let secs = Math.max(currentBreakSecs%60, 0)
+    if (secs < 10) {
+        return `0` + `${secs}`
+    }
+    return `${secs}`
+}
+let currentBreakAnalogueMins = () => {
+    let mins = Math.max(Math.floor(currentBreakSecs/60), 0)
     if (mins < 10) {
         return `0` + `${mins}`
     }
@@ -55,18 +69,15 @@ timerResetButton.addEventListener("click", function() {
 
 setInterval(function() {
     if (!isPaused) {
-        if (currentWorkSecs > 0) {
-            let rotatePercentWork = Math.round(360 - ((currentWorkSecs/(workMins*30)) * 180))
+        if (currentWorkSecs >= 0) {
+            let rotatePercentWork = Math.ceil(360 - ((currentWorkSecs/(workMins*30)) * 180))
             progressAniOne.style.transform = `rotate(${Math.min(rotatePercentWork, 180)}deg)`
             progressAniTwo.style.transform = `rotate(${Math.max(rotatePercentWork-180, 0)}deg)`
-            console.log(rotatePercentWork)
             currentWorkSecs--
             timeRemainingText.innerHTML = `${currentWorkAnalogueMins()}:${currentWorkAnalogueSecs()}`
-            // console.log(currentWorkSecs)
         } else {
             if (currentBreakSecs >= 0) {
                 currentBreakSecs--
-                console.log(currentBreakSecs)
             } else {
                 currentWorkSecs = workMins*60
                 currentBreakSecs = breakMins*60

@@ -4,9 +4,9 @@
         <title>Timerama</title>
         <link rel="stylesheet" href="styles.css">
         <style>
-            @import url('https://fonts.googleapis.com/css2?family=Akaya+Kanadaka&display=swap');
-        </style> 
-    </head>
+            @import url('https://fonts.googleapis.com/css2?family=Akaya+Kanadaka&family=Roboto+Mono:wght@100;200;300;400;500;600;700&display=swap');
+            </style> 
+            </head>
     <body>
         <header>
         </header>
@@ -26,13 +26,17 @@
             </div>
         </div>
         <section class="timer-input">
-            <h2>I'm gonna spend my minutes...</h2>
-            <label for="worktime">working</label>
+            <h2>I'm gonna spend my time...</h2>
+            <label for="worktime" class="working">working:</label>
             <input type="text" id="input-worktime" name="worktime" maxlength="2" size="1" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
-            <label for="breaktime">relaxing</label>
+            <br/>
+            <label for="breaktime" class="relaxing">chilling:</label>
             <input type="text" id="input-breaktime" name="breaktime" maxlength="2" size="1" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+            <br/>
             <button id="set-minutes-button">set minutes</button>
+            <br/>
             <button id="timer-start-button">drop it like it's hot</button>
+            <br/>
             <button id="timer-reset-button">reset</button>
         </section>
     </body>

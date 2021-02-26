@@ -6,6 +6,10 @@ const breaktimeInput = document.getElementById("input-breaktime")
 const timerStartButton = document.getElementById("timer-start-button")
 const setMinutesButton = document.getElementById("set-minutes-button")
 const timerResetButton = document.getElementById("timer-reset-button")
+
+const progressAniOne = document.getElementById("progress-one")
+const progressAniTwo = document.getElementById("progress-two")
+
 let workMins = 0
 let breakMins = 0
 let currentWorkSecs = 0
@@ -36,8 +40,12 @@ timerResetButton.addEventListener("click", function() {
 setInterval(function() {
     if (!isPaused) {
         if (currentWorkSecs > 0) {
+            let rotatePercentWork = Math.round(360 - ((currentWorkSecs/(workMins*30)) * 180))
+            progressAniOne.style.transform = `rotate(${Math.min(rotatePercentWork, 180)}deg)`
+            progressAniTwo.style.transform = `rotate(${Math.max(rotatePercentWork-180, 0)}deg)`
+            console.log(rotatePercentWork)
             currentWorkSecs--
-            console.log(currentWorkSecs)
+            // console.log(currentWorkSecs)
         } else {
             if (currentBreakSecs > 0) {
                 currentBreakSecs--

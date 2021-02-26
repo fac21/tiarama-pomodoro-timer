@@ -33,9 +33,74 @@ body {
 } */
 
 .analogue-clock-container {
-    height: 200px;
-    width: 200px;
-    background-color: pink;
+    display: grid;
+    text-align: center;
+    place-items: center;
+    height: 300px;
+    width: 300px;
+}
+
+.circular {
+    height: 100px;
+    width: 100px;
+    position: relative;
+    transform: scale(2);
+}
+
+.inner {
+    position: absolute;
+    z-index: 6;
+    top: 50%;
+    left: 50%;
+    height: 50px;
+    width: 50px;
+    margin: -25px 0 0 -25px;
+    background: #f1faee;
+    border-radius: 100%;
+    box-shadow: 0 1px 0 rgba(0,0,0,0.2);
+}
+
+#time-remaining {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    font-weight: 500;
+}
+
+.bar {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background: #FEC5BB;
+    border-radius: 100%;
+    clip: rect(0px, 100px, 100px, 50px)
+}
+
+.progress {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background: #457b9d;
+    border-radius: 100%;
+    clip: rect(0px, 50px, 100px, 0px);
+    transition: transform 1.1s linear;
+}
+
+.left .progress {
+    z-index: 1;
+    /* animation: left 4s linear both;
+}
+@keyframes left {
+    100% {
+        transform: rotate(180deg);
+    } */
+}
+
+.right {
+    z-index: 3;
+    transform: rotate(180deg);
 }
 
 .timer-input {

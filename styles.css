@@ -17,7 +17,6 @@ body {
     height: 200px;
     width: 200px;
     background-color: blue;
-    font-family: 'Oi', cursive;
 }
 
 .outer-shadow {
@@ -36,6 +35,9 @@ body {
     place-items: center;
     height: 300px;
     width: 300px;
+    font-family: 'Akaya Kanadaka', cursive;
+    font-size: 18px;
+    color: #264653;
 }
 
 .circular {
@@ -89,12 +91,6 @@ body {
 
 .left .progress {
     z-index: 1;
-    /* animation: left 4s linear both;
-}
-@keyframes left {
-    100% {
-        transform: rotate(180deg);
-    } */
 }
 
 .right {

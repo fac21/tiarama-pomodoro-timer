@@ -3,18 +3,29 @@
     <head>
         <title>Timerama</title>
         <link rel="stylesheet" href="styles.css">
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Oi&display=swap');
+        </style> 
     </head>
     <body>
-        <div class="clock-animation-container"></div>
-        <div class="analogue-clock-container"></div>
+        <div class="clock-animation-container">
+            
+            <!-- <div id="worktime-animation-text">WORKTIMEWORKTIME</div>
+            <div id="breaktime-animation-text">BREAKBREAKBREAK</div> -->
+        </div>
+        <div class="analogue-clock-container">
+            
+        </div>
         <section class="timer-input">
             <h2>I'm gonna spend my minutes...</h2>
             <label for="worktime">working</label>
-            <input type="text" class="input-worktime" name="worktime" maxlength="2" size="1" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+            <input type="text" id="input-worktime" name="worktime" maxlength="2" size="1" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
             <label for="breaktime">relaxing</label>
-            <input type="text" class="input-breaktime" name="breaktime" maxlength="2" size="1" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
-            <button>drop it like it's hot</button>
+            <input type="text" id="input-breaktime" name="breaktime" maxlength="2" size="1" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+            <button id="timer-start-button">drop it like it's hot</button>
+            <button>reset</button>
         </section>
     </body>
-    <script src="myscripts.js"></script> 
+    <script src="circletype.min.js"></script>
+    <script src="script.js"></script>
 </html> 

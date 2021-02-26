@@ -12,6 +12,9 @@ const timeRemainingText = document.getElementById("time-remaining")
 const progressAniOne = document.getElementById("progress-one")
 const progressAniTwo = document.getElementById("progress-two")
 
+let isPaused = true
+let initial = true
+
 let workMins = 0
 let breakMins = 0
 let currentWorkSecs = 0
@@ -44,16 +47,15 @@ let currentBreakAnalogueMins = () => {
     }
     return `${mins}`
 }
-let isPaused = true
-
-setMinutesButton.addEventListener("click", function() {
-    workMins = worktimeInput.value
-    breakMins = breaktimeInput.value
-    currentWorkSecs = workMins*60
-    currentBreakSecs = breakMins*60
-})
 
 timerStartButton.addEventListener("click", function() {
+    if (initial) {
+        workMins = worktimeInput.value
+        breakMins = breaktimeInput.value
+        currentWorkSecs = workMins*60
+        currentBreakSecs = breakMins*60
+        initial = false
+    }
     if (isPaused) {
         isPaused = false
     } else {
@@ -62,19 +64,25 @@ timerStartButton.addEventListener("click", function() {
 })
 
 timerResetButton.addEventListener("click", function() {
+    initial = true
     isPaused = true
     workMins = 0
     breakMins = 0
+    currentWorkSecs = 0
+    currentBreakSecs = 0
+    progressAniOne.style.transform = `rotate(0deg)`
+    progressAniTwo.style.transform = `rotate(0deg)`
+    timeRemainingText.innerHTML = `00:00`
 })
 
 setInterval(function() {
     if (!isPaused) {
         if (currentWorkSecs >= 0) {
-            let rotatePercentWork = Math.ceil(360 - ((currentWorkSecs/(workMins*30)) * 180))
+            let rotatePercentWork = Math.floor(360 - ((currentWorkSecs/(workMins*30)) * 180))
             progressAniOne.style.transform = `rotate(${Math.min(rotatePercentWork, 180)}deg)`
             progressAniTwo.style.transform = `rotate(${Math.max(rotatePercentWork-180, 0)}deg)`
-            currentWorkSecs--
             timeRemainingText.innerHTML = `${currentWorkAnalogueMins()}:${currentWorkAnalogueSecs()}`
+            currentWorkSecs--
         } else {
             if (currentBreakSecs >= 0) {
                 currentBreakSecs--

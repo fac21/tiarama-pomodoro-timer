@@ -27,7 +27,7 @@ body {
     width: 200px;
     border-radius: 50%;
     background: rgba(0,0,0,0);
-    box-shadow: inset 0 1px 5px rgba(0,0,0,0.1);
+    box-shadow: inset 0 2px 3px 1px rgba(0,0,0,0.1);
 }
 
 .analogue-clock-container {
@@ -37,7 +37,7 @@ body {
     height: 300px;
     width: 300px;
     font-family: 'Roboto Mono', monospace;
-    font-size: 1rem;
+    font-size: 0.9rem;
     color: #264653;
 }
 
@@ -61,7 +61,7 @@ body {
     background-attachment: fixed;
     background-size: cover;
     border-radius: 100%;
-    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.2);
 }
 
 #time-remaining {
@@ -86,10 +86,10 @@ body {
     position: absolute;
     height: 100%;
     width: 100%;
-    background: #455e89;
+    background: #264653;
     border-radius: 100%;
     clip: rect(0px, 50px, 100px, 0px);
-    transition: transform 1.1s linear;
+    transition: transform 1.01s linear;
 }
 
 .left .progress {
@@ -97,8 +97,11 @@ body {
 }
 
 .right {
-    z-index: 3;
     transform: rotate(180deg);
+}
+
+.right .progress {
+    z-index: 3;
 }
 
 .timer-input {

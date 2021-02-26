@@ -7,6 +7,8 @@ const timerStartButton = document.getElementById("timer-start-button")
 const setMinutesButton = document.getElementById("set-minutes-button")
 const timerResetButton = document.getElementById("timer-reset-button")
 
+const timeRemainingText = document.getElementById("time-remaining")
+
 const progressAniOne = document.getElementById("progress-one")
 const progressAniTwo = document.getElementById("progress-two")
 
@@ -14,6 +16,20 @@ let workMins = 0
 let breakMins = 0
 let currentWorkSecs = 0
 let currentBreakSecs = 0
+let currentWorkAnalogueSecs = () => {
+    let secs = currentWorkSecs%60
+    if (secs < 10) {
+        return `0` + `${secs}`
+    }
+    return `${secs}`
+}
+let currentWorkAnalogueMins = () => {
+    let mins = Math.floor(currentWorkSecs/60)
+    if (mins < 10) {
+        return `0` + `${mins}`
+    }
+    return `${mins}`
+}
 let isPaused = true
 
 setMinutesButton.addEventListener("click", function() {
@@ -45,6 +61,7 @@ setInterval(function() {
             progressAniTwo.style.transform = `rotate(${Math.max(rotatePercentWork-180, 0)}deg)`
             console.log(rotatePercentWork)
             currentWorkSecs--
+            timeRemainingText.innerHTML = `${currentWorkAnalogueMins()}:${currentWorkAnalogueSecs()}`
             // console.log(currentWorkSecs)
         } else {
             if (currentBreakSecs > 0) {

@@ -5,7 +5,7 @@ const worktimeInput = document.getElementById("input-worktime")
 const breaktimeInput = document.getElementById("input-breaktime")
 const timerStartButton = document.getElementById("timer-start-button")
 const setMinutesButton = document.getElementById("set-minutes-button")
-
+const timerResetButton = document.getElementById("timer-reset-button")
 let workMins = 0
 let breakMins = 0
 let currentWorkSecs = 0
@@ -18,12 +18,19 @@ setMinutesButton.addEventListener("click", function() {
     currentWorkSecs = workMins*60
     currentBreakSecs = breakMins*60
 })
+
 timerStartButton.addEventListener("click", function() {
     if (isPaused) {
         isPaused = false
     } else {
         isPaused = true
     }
+})
+
+timerResetButton.addEventListener("click", function() {
+    isPaused = true
+    workMins = 0
+    breakMins = 0
 })
 
 setInterval(function() {

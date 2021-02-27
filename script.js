@@ -1,5 +1,3 @@
-// new CircleType(document.getElementById('worktime-animation-text'));
-// new CircleType(document.getElementById('breaktime-animation-text'));
 
 const worktimeInput = document.getElementById("input-worktime")
 const breaktimeInput = document.getElementById("input-breaktime")
@@ -13,6 +11,7 @@ const progressStationArr = document.querySelectorAll(".bar")
 const progressAniOne = document.getElementById("progress-one")
 const progressAniTwo = document.getElementById("progress-two")
 
+const alarm = new Audio("singing-bowl.wav")
 
 let isPaused = true
 let initial = true
@@ -97,6 +96,9 @@ function reset() {
 
 setInterval(function() {
     if (!isPaused) {
+        if (currentWorkSecs === 0 || currentBreakSecs === 0) {
+            alarm.play()
+        }
         if (currentWorkSecs == workMins*60) {
             progressStationArr[0].style.background = "#ffe5d9"
             progressStationArr[1].style.background = "#ffe5d9"

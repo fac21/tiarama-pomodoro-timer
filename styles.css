@@ -30,7 +30,9 @@ body {
 }
 
 .analogue-clock-container {
-    display: grid;
+    justify-content: center;
+    align-items: center;
+    display: flex;
     text-align: center;
     place-items: center;
     min-height: 250px;
@@ -140,6 +142,7 @@ input {
     border-radius: 20%;
     font-family: 'Roboto Mono', monospace;
     font-size: 1.2rem;
+    outline: none;
 }
 
 input[disabled] {
@@ -174,6 +177,10 @@ input[disabled] {
     width: 50px;
     border: none;
     box-shadow: 0 2.5px 3px rgba(38,70,83,0.8);
+}
+
+button {
+ outline: none;
 }
 
 button:active {

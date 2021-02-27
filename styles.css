@@ -162,7 +162,7 @@ input[disabled] {
     justify-content: center;
 }
 
-button {
+.timer-input button {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -172,7 +172,6 @@ button {
     background-color: #ffe5d9;
     height: 50px;
     width: 50px;
-    border: none;
     box-shadow: 0 2.5px 3px rgba(38,70,83,0.8);
 }
 
@@ -195,4 +194,31 @@ button:active {
 
 #pause-icon {
     display: none;
+}
+
+#alarm-container {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+#alarm-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    height: 30px;
+    width: 30px;
+    background: none;
+    border-radius: 50%;
+    box-shadow: 0 1.5px 2.5px rgba(38,70,83,0.8);
+}
+
+.alarm-icon {
+    position: absolute;
+    color: #264653;
+}
+
+#alarm-icon-off {
+    color: rgba(38,70,83,0.5); 
 }

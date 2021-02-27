@@ -12,6 +12,7 @@ const progressAniOne = document.getElementById("progress-one")
 const progressAniTwo = document.getElementById("progress-two")
 
 const alarm = new Audio("singing-bowl.wav")
+let alarmIsOn = true
 
 let isPaused = true
 let initial = true
@@ -47,6 +48,23 @@ let currentBreakAnalogueMins = () => {
         return `0` + `${mins}`
     }
     return `${mins}`
+}
+
+function alarmOnOff() {
+    const alarmOn = document.getElementById("alarm-icon-on")
+    const alarmOff = document.getElementById("alarm-icon-off")
+    if (alarmIsOn) {
+        alarm.currentTime = 99
+        alarmIsOn = false
+        alarmOn.style.display = "none"
+        alarmOff.style.display = "block"
+    } else {
+        alarm.currentTime = 0
+        alarm.play()
+        alarmIsOn = true
+        alarmOn.style.display = "block"
+        alarmOff.style.display = "none"
+    }
 }
 
 function playPause() {
@@ -97,7 +115,10 @@ function reset() {
 setInterval(function() {
     if (!isPaused) {
         if (currentWorkSecs === 0 || currentBreakSecs === 0) {
-            alarm.play()
+            if (alarmIsOn) {
+                alarm.currentTime = 0
+                alarm.play()
+            }
         }
         if (currentWorkSecs == workMins*60) {
             progressStationArr[0].style.background = "#ffe5d9"

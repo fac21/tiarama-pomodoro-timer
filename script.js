@@ -53,21 +53,23 @@ let currentBreakAnalogueMins = () => {
 function playPause() {
     const playIcon = document.getElementById("play-icon")
     const pauseIcon = document.getElementById("pause-icon")
-    if (initial) {
-        workMins = worktimeInput.value
-        breakMins = breaktimeInput.value
-        currentWorkSecs = workMins*60
-        currentBreakSecs = breakMins*60
-        initial = false
-    }
-    if (isPaused) {
-        isPaused = false
-        playIcon.style.display = "none"
-        pauseIcon.style.display = "block"
-    } else {
-        isPaused = true
-        playIcon.style.display = "block"
-        pauseIcon.style.display = "none"
+    if (worktimeInput.value !== "" && breaktimeInput.value !== "") {
+        if (initial) {
+            workMins = worktimeInput.value
+            breakMins = breaktimeInput.value
+            currentWorkSecs = workMins*60
+            currentBreakSecs = breakMins*60
+            initial = false
+        }
+        if (isPaused) {
+            isPaused = false
+            playIcon.style.display = "none"
+            pauseIcon.style.display = "block"
+        } else {
+            isPaused = true
+            playIcon.style.display = "block"
+            pauseIcon.style.display = "none"
+        }
     }
 }
 
@@ -76,6 +78,8 @@ function reset() {
     const pauseIcon = document.getElementById("pause-icon")
     playIcon.style.display = "block"
     pauseIcon.style.display = "none"
+    worktimeInput.value = ""
+    breaktimeInput.value = ""
     initial = true
     isPaused = true
     workMins = 0

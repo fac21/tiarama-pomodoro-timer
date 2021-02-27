@@ -5,7 +5,8 @@
         <link rel="stylesheet" href="styles.css">
         <style>
             @import url('https://fonts.googleapis.com/css2?family=Akaya+Kanadaka&family=Roboto+Mono:wght@100;200;300;400;500;600;700&display=swap');
-            </style> 
+        </style> 
+        <script src="https://kit.fontawesome.com/e7e588ae48.js" crossorigin="anonymous"></script>
             </head>
     <body>
         <header>
@@ -33,9 +34,16 @@
             <label for="breaktime" class="relaxing">chilling:</label>
             <input type="text" id="input-breaktime" name="breaktime" placeholder="00" maxlength="2" size="1" oninput="this.value = this.value.replace(/[^0-9]/g, '')"> ]
             <br/>
-            <button id="timer-start-button">drop it like it's hot</button>
-            <br/>
-            <button id="timer-reset-button">reset</button>
+            <div class="button-container">
+                <button onclick="playPause()" id="timer-start-button">
+                    <i class="fa fa-play-circle fa-4x icon" id="play-icon"></i>
+                    <i class="fa fa-pause-circle fa-4x icon" id="pause-icon"></i>
+                </button>
+                <br/>
+                <button onclick="reset()" id="timer-reset-button">
+                    <i class="fas fa-undo-alt fa-4x"></i>
+                </button>
+            </div>
         </section>
     </body>
     <script src="script.js"></script>

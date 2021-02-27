@@ -13,6 +13,7 @@ const progressStationArr = document.querySelectorAll(".bar")
 const progressAniOne = document.getElementById("progress-one")
 const progressAniTwo = document.getElementById("progress-two")
 
+
 let isPaused = true
 let initial = true
 
@@ -49,7 +50,9 @@ let currentBreakAnalogueMins = () => {
     return `${mins}`
 }
 
-timerStartButton.addEventListener("click", function() {
+function playPause() {
+    const playIcon = document.getElementById("play-icon")
+    const pauseIcon = document.getElementById("pause-icon")
     if (initial) {
         workMins = worktimeInput.value
         breakMins = breaktimeInput.value
@@ -59,12 +62,20 @@ timerStartButton.addEventListener("click", function() {
     }
     if (isPaused) {
         isPaused = false
+        playIcon.style.display = "none"
+        pauseIcon.style.display = "block"
     } else {
         isPaused = true
+        playIcon.style.display = "block"
+        pauseIcon.style.display = "none"
     }
-})
+}
 
-timerResetButton.addEventListener("click", function() {
+function reset() {
+    const playIcon = document.getElementById("play-icon")
+    const pauseIcon = document.getElementById("pause-icon")
+    playIcon.style.display = "block"
+    pauseIcon.style.display = "none"
     initial = true
     isPaused = true
     workMins = 0
@@ -74,7 +85,7 @@ timerResetButton.addEventListener("click", function() {
     progressAniOne.style.transform = `rotate(0deg)`
     progressAniTwo.style.transform = `rotate(0deg)`
     timeRemainingText.innerHTML = `00:00`
-})
+}
 
 setInterval(function() {
     if (!isPaused) {

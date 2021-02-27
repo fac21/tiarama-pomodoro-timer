@@ -173,6 +173,10 @@ button {
     box-shadow: 0 2.5px 3px rgba(38,70,83,0.8);
 }
 
+button:active {
+    transform: scale(0.9);
+}
+
 #timer-start-button {
     height: 50px;
     width: 50px;

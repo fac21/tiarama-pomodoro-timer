@@ -60,6 +60,8 @@ function playPause() {
             currentWorkSecs = workMins*60
             currentBreakSecs = breakMins*60
             initial = false
+            worktimeInput.disabled = "true"
+            breaktimeInput.disabled = "true"
         }
         if (isPaused) {
             isPaused = false
@@ -78,6 +80,8 @@ function reset() {
     const pauseIcon = document.getElementById("pause-icon")
     playIcon.style.display = "block"
     pauseIcon.style.display = "none"
+    worktimeInput.disabled = ""
+    breaktimeInput.disabled = ""
     worktimeInput.value = ""
     breaktimeInput.value = ""
     initial = true

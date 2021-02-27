@@ -143,6 +143,10 @@ input {
     font-size: 1.2rem;
 }
 
+input[disabled] {
+    border: none;
+} 
+
 #input-worktime {
     background-color: rgba(38,70,83, 0.9);
     color: #ffe5d9;

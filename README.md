@@ -27,20 +27,42 @@ ___
 
 ## Solution time!
 
-- **A “work” timer that counts down to zero (usually 25 minutes)**  
+**A “work” timer that counts down to zero (usually 25 minutes)**  
 
-Creating two variables, in one I stored the initial time in minutes and stored the time in seconds in another:  
+- Creating two variables, in one I stored the initial time in minutes and stored the time in seconds in another:  
 ```javascript
 let workMins = 25   
 let currentWorkSecs = workMins*60
 ```
-A setInterval() function counts down the current seconds on each tick, and resets the value when reaching zero:
+- A setInterval() function counts down the current seconds on each tick, and resets the value when reaching zero:
 ```javascript
 setInterval(function() {
   if (currentWorkSecs >= 0) {
     currentWorkSecs--
   } else {
     currentWorkSecs = workMins*60
+  } 
+}, 1000)
+```
+
+**A second “break” timer that counts down to zero (usually 5 minutes)**  
+
+- I added another two variables with the same purpose as the first two, and added another if statement in the function to switch to the break timer when the work timer has reached zero:
+```javascript
+let workMins = 25 
+let breakMins = 5
+let currentWorkSecs = workMins*60
+let currentBreakSecs = breakMins*60
+
+setInterval(function() {
+  if (currentWorkSecs >= 0) {
+    currentWorkSecs--
+  } else {
+      if (currentBreakSecs >= 0) {
+        currentBreakSecs--
+    } else {
+      currentWorkSecs = workMins*60
+      currentBreakSecs = breakMins*60
   } 
 }, 1000)
 ```

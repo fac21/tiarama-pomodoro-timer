@@ -66,3 +66,38 @@ setInterval(function() {
   } 
 }, 1000)
 ```
+
+**Buttons to start a session, pause the timer, or cancel the session and restart**
+
+- I created a variable with a boolean value that started as "false". Since my setInterval() function runs constantly from page load, I added another if statement that only runs the code whilst the boolean === true. A play/pause button in the HTML toggles the boolean value when clicked, causing it to allow my setInterval() code to run when not in a paused state:
+
+```html
+<button onclick="playPause()" id="timer-start-button"></button>
+```
+
+```javascript
+const timerStartButton = document.getElementById("timer-start-button")
+let isPaused = true
+
+function playPause() {
+  if (isPaused) {
+    isPaused = false
+  } else {
+    isPaused = true
+  }
+}
+
+setInterval(function() {
+  if (!isPaused) {
+    if (currentWorkSecs >= 0) {
+      currentWorkSecs--
+    } else {
+      if (currentBreakSecs >= 0) {
+        currentBreakSecs--
+      } else {
+        currentWorkSecs = workMins*60
+        currentBreakSecs = breakMins*60
+    }
+  }
+}, 1000)
+```

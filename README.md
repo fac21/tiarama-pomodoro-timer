@@ -3,12 +3,22 @@
 
 ## An interactive pomodoro timer written and designed by me for [FAC](https://www.foundersandcoders.com/)21 week 4.
 
-I would like to start off by saying that what I am most proud of in this project is the pun "split() my time", with the two time inputs being split into an array.  
-I make a lot of terrible puns, but this one is actually half decent and that is such an achievement for me :sparkler:
+> I would like to start off by saying that what I am most proud of in this project is the pun "split() my time", with the two time inputs being split into an array.  
+> I make a lot of terrible puns, but this one is actually half decent and that is such an achievement for me :sparkler:
 
 ### Task: Create a [pomodoro](https://en.wikipedia.org/wiki/Pomodoro_Technique) timer with the following features: 
-- A “work” timer that counts down to zero (usually 25 minutes)
-- A second “break” timer that counts down to zero (usually 5 minutes)
-- Buttons to start a session, pause the timer, or cancel the session and restart
-- Customisable lengths of time for work/break
-- Play an alarm sound to make it obvious the time is up
+- A “work” timer that counts down to zero (usually 25 minutes) :white_check_mark:
+- A second “break” timer that counts down to zero (usually 5 minutes) :white_check_mark:
+- Buttons to start a session, pause the timer, or cancel the session and restart :white_check_mark:
+- Customisable lengths of time for work/break :white_check_mark:
+- Play an alarm sound to make it obvious the time is up :white_check_mark:
+
+#### My customisations:
+- A circle animation gives a visual representation of how much time is left on the current timer. The animation switches between two colours.
+- A mute button to toggle the alarm sound. The button will play the sound sample on "unmute" click, and will end all playing alarm sounds on "mute" click.
+- Custom time input fields become un-editable once timer has been activated, regardless of timer pause state. Values reset to zero and become editable on reset button click.
+- The page is not really responsive, but is also formatted to work on mobile.
+
+##### Unresolved issues:
+- If timer finishes whilst tab is not in view, upon re-opening the tab the circle animation will move in a bizarre way as it changes to correct position.
+- On some mobile browsers a slight line appears in circle animation where the two halves of the circle meet

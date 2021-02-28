@@ -44,7 +44,7 @@ setInterval(function() {
   } 
 }, 1000)
 ```
-
+___
 **A second “break” timer that counts down to zero (usually 5 minutes)**  
 
 - I added another two variables with the same purpose as the first two, and added another if statement in the function to switch to the break timer when the work timer has reached zero:
@@ -66,10 +66,10 @@ setInterval(function() {
   } 
 }, 1000)
 ```
+___
+**Button to start a session or pause the timer**
 
-**Buttons to start a session, pause the timer, or cancel the session and restart**
-
-- I created a variable with a boolean value that started as "false". Since my setInterval() function runs constantly from page load, I added another if statement that only runs the code whilst the boolean === true. A play/pause button in the HTML toggles the boolean value when clicked, causing it to allow my setInterval() code to run when not in a paused state:
+- I created a variable with a boolean value that started as "true". Since my setInterval() function runs constantly from page load, I added another if statement that only runs the code whilst the boolean === false. A play/pause button in the HTML toggles the boolean value when clicked, causing it to allow my setInterval() code to run when not in a paused state:
 
 ```html
 <button onclick="playPause()" id="timer-start-button"></button>
@@ -101,3 +101,138 @@ setInterval(function() {
   }
 }, 1000)
 ```
+___
+**Button to cancel the session and restart**
+
+- This button simply resets all the values to what they would be on page load:
+
+```html
+<button onclick="reset()" id="timer-reset-button"></button>
+```
+
+```javascript
+function reset() {
+    isPaused = true
+    currentWorkSecs = workMins*60
+    currentBreakSecs = workMins*60
+}
+```
+___
+**Customisable lengths of time for work/break**
+
+This is where stuff starts to get tricky:
+- Create two HTML input tags that will be used to collect and store the value for the timers (I used a text input with a regex that only allows numbers, as I found the number input wasn't quite what I wanted for a simple aesthetic):
+
+```html
+<input type="text" id="input-worktime" placeholder="00" maxlength="2" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+<input type="text" id="input-breaktime" placeholder="00" maxlength="2" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+```
+
+```javascript
+const worktimeInput = document.getElementById("input-worktime")
+const breaktimeInput = document.getElementById("input-breaktime")
+```
+
+- Add a boolean variable and an if statement to my playPause() function that stores the input to my timer values and disables altering of the input fields, but only if it is the first time the button is pressed after page load (or after reset):
+
+```javascript
+let initial = true
+
+function playPause() {
+    if (worktimeInput.value !== "" && breaktimeInput.value !== "") {
+        if (initial) {
+            workMins = worktimeInput.value
+            breakMins = breaktimeInput.value
+            currentWorkSecs = workMins*60
+            currentBreakSecs = breakMins*60
+            initial = false
+            worktimeInput.disabled = true
+            breaktimeInput.disabled = true
+        }
+        if (isPaused) {
+            isPaused = false
+        } else {
+            isPaused = true
+        }
+    }
+}
+
+function reset() {
+    worktimeInput.disabled = false
+    breaktimeInput.disabled = false
+    worktimeInput.value = ""
+    breaktimeInput.value = ""
+    initial = true
+    isPaused = true
+    workMins = 0
+    breakMins = 0
+    currentWorkSecs = 0
+    currentBreakSecs = 0
+}
+```
+___
+
+**Play an alarm sound to make it obvious the time is up**
+
+- Add a .play() method within the setInterval() if statements that run when either timer reaches 0. Simple :hamster:
+
+___
+
+## My customisations:
+
+-These are too complicated for me to list step by step on this readme, but my code is annotated so feel free to take a look at that for an idea of what's happening.
+
+-I will say that the most difficult (and fun) part by far was the circle animation that consits of four semi circles, two pink and two blue, with varying z indexes.
+I animated them by finding the current seconds as a percentage value of the input seconds, and changing the rotate(deg) by the same percentage of 360, then simply altering their background colours when switching between each timer type:
+
+```javascript
+const progressStationArr = document.querySelectorAll(".bar")
+const progressAniOne = document.getElementById("progress-one")
+const progressAniTwo = document.getElementById("progress-two")
+
+setInterval(function() {
+    if (!isPaused) {
+        if (currentWorkSecs === 0 || currentBreakSecs === 0) {
+            if (alarmIsOn) {
+                alarm.currentTime = 0
+                alarm.play()
+            }
+        }
+        if (currentWorkSecs == workMins*60) {
+            progressStationArr[0].style.background = "#ffe5d9"
+            progressStationArr[1].style.background = "#ffe5d9"
+            progressAniTwo.style.background = "#264653"
+            progressAniOne.style.background = "#264653"
+            progressAniOne.style.transform = `rotate(0deg)`
+            progressAniTwo.style.transform = `rotate(-180deg)`
+        }
+        if (currentWorkSecs >= 0) {
+            let rotatePercentWork = Math.floor(360 - ((currentWorkSecs/(workMins*30)) * 180))
+            progressAniOne.style.transform = `rotate(${Math.min(rotatePercentWork, 180)}deg)`
+            progressAniTwo.style.transform = `rotate(${Math.max(rotatePercentWork-180, 0)}deg)`
+            timeRemainingText.innerHTML = `${currentWorkAnalogueMins()}:${currentWorkAnalogueSecs()}`
+            currentWorkSecs--
+        } else {
+            if (currentBreakSecs == breakMins*60) {
+                progressStationArr[0].style.background = "#264653"
+                progressStationArr[1].style.background = "#264653"
+                progressAniTwo.style.background = "#ffe5d9"
+                progressAniOne.style.background = "#ffe5d9"
+                progressAniOne.style.transform = `rotate(0deg)`
+                progressAniTwo.style.transform = `rotate(-180deg)`
+            }
+            if (currentBreakSecs >= 0) {
+                let rotatePercentBreak = Math.floor(360 - ((currentBreakSecs/(breakMins*30)) * 180))
+                progressAniOne.style.transform = `rotate(${Math.min(rotatePercentBreak, 180)}deg)`
+                progressAniTwo.style.transform = `rotate(${Math.max(rotatePercentBreak-180, 0)}deg)`
+                timeRemainingText.innerHTML = `${currentBreakAnalogueMins()}:${currentBreakAnalogueSecs()}`
+                currentBreakSecs--
+            } else {
+                currentWorkSecs = workMins*60
+                currentBreakSecs = breakMins*60
+            }
+        }
+    }
+}, 1000)
+```
+

@@ -34,3 +34,13 @@ Creating two variables, in one I stored the initial time in minutes and stored t
 let workMins = 25   
 let currentWorkSecs = workMins*60
 ```
+A setInterval() function counts down the current seconds on each tick, and resets the value when reaching zero:
+```javascript
+setInterval(function() {
+  if (currentWorkSecs >= 0) {
+    currentWorkSecs--
+  } else {
+    currentWorkSecs = workMins*60
+  } 
+}, 1000)
+```

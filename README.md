@@ -3,7 +3,7 @@
 
 ## An interactive pomodoro timer written and designed by me for [FAC](https://www.foundersandcoders.com/)21 week 4.
 
-> I would like to start off by saying that what I am most proud of in this project is the pun "split() my time", with the two time inputs being split into an array.  
+> I would like to start off by saying that what I am most proud of in this project is the pun "split() my time", with the two time inputs seemingly being split into an array.  
 > I make a lot of terrible puns, but this one is actually half decent and that is such an achievement for me :sparkler:
 
 ### Task: Create a [pomodoro](https://en.wikipedia.org/wiki/Pomodoro_Technique) timer with the following features: 
@@ -19,6 +19,6 @@
 - Custom time input fields become un-editable once timer has been activated, regardless of timer pause state. Values reset to zero and become editable on reset button click.
 - The page is not really responsive, but is also formatted to work on mobile.
 
-##### Unresolved issues:
+#### Unresolved issues:
 - If timer finishes whilst tab is not in view, upon re-opening the tab the circle animation will move in a bizarre way as it changes to correct position.
 - On some mobile browsers a slight line appears in circle animation where the two halves of the circle meet

@@ -76,7 +76,6 @@ ___
 ```
 
 ```javascript
-const timerStartButton = document.getElementById("timer-start-button")
 let isPaused = true
 
 function playPause() {

@@ -14,14 +14,14 @@
 - Play an alarm sound to make it obvious the time is up :white_check_mark:
 
 ### My customisations:
-- A circle animation gives a visual representation of how much time is left on the current timer. The animation switches between two colours.
-- A mute button to toggle the alarm sound. The button will play the sound sample on "unmute" click, and will end all playing alarm sounds on "mute" click.
-- Custom time input fields become un-editable once timer has been activated, regardless of timer pause state. Values reset to zero and become editable on reset button click.
-- The page is not really responsive, but is also formatted to work on mobile.
+- A circle animation gives a visual representation of how much time is left on the current timer. The animation switches between two colours :tada:
+- A mute button to toggle the alarm sound. The button will play the sound sample on "unmute" click, and will end all playing alarm sounds on "mute" click :tada:
+- Custom time input fields become un-editable once timer has been activated, regardless of timer pause state. Values reset to zero and become editable on reset button click :tada:
+- The page is not really responsive, but is also formatted to work on mobile :tada:
 
 ### Unresolved issues:
-- If timer finishes whilst tab is not in view, upon re-opening the tab the circle animation will move in a bizarre way as it changes to correct position.
-- On some mobile browsers a slight line appears in circle animation where the two halves of the circle meet
+- If timer finishes whilst tab is not in view, upon re-opening the tab the circle animation will move in a bizarre way as it changes to correct position :x:
+- On some mobile browsers a slight line appears in circle animation where the two halves of the circle meet :x:
 
 ___
 
